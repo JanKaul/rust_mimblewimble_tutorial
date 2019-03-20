@@ -28,26 +28,29 @@ let mut rng = rand::thread_rng();
 
 ![11hrclock](img/11hrclock.png)
 
-- given the Generator $G = 3$ and the point $P = 2$ it is extremely difficult (assuming large numbers) to get the multiplicator $r$ that satisfies
+- given the Generator G = 3 and the point P = 2 it is extremely difficult (assuming large numbers) to get the multiplicator r that satisfies
 
-$$ P = r G$$
-- however, knowing $r$ it is easy to compute $P$
+P = r G
+
+- however, knowing r it is easy to compute P
 
 ## Schnorr signatures
 
-- private key $r$, public key $U$ with
+- private key r, public key U with
 
-$$ U = rG$$
-- signer generates nonce $r_t$ and computes commitment to nonce
+U = rG
 
-$$ U_t = r_t G$$
-- using challenge $c=H(m,U_t)$ signer computes
+- signer generates nonce r_t and computes commitment to nonce
 
-$$ r_z = r_t + c r$$
-- signer sends $(U_t,r_z)$ to verifier
+U_t = r_t G
+
+- using challenge c=H(m,U_t) signer computes
+
+r_z = r_t + c r
+- signer sends (U_t,r_z) to verifier
 - verifier checks
 
-$$ r_z G = U_t + cU$$
+r_z G = U_t + cU
 
 
 ```Rust
@@ -96,11 +99,11 @@ assert_eq!(rz*G,Ut+c*U);
 
 ## Example transaction
 
-- lets look at a transaction with one input $v_{i1}$ and two outputs $v_{o1},v_{o2}$
+- lets look at a transaction with one input vi1 and two outputs vo1,vo2
 - in order to not generate money out of nothing, the inputs must equal the ouputs
 
-$$ v_{i1} = v_{o1} + v_{o2}$$
-- lets consider for example the input $v_{i1} = 40$ and the outputs $v_{o1} = 25, v_{o2}=15$
+vi1 = vo1 + vo2
+- lets consider for example the input vi1 = 40 and the outputs vo1 = 25, vo2=15
 
 
 ```Rust
@@ -135,10 +138,10 @@ vi1
 
 ## Hiding
 
-- in order to obscure the values of the transaction, one can multiply every term by the point $H$ on an elliptic curve, this yields
+- in order to obscure the values of the transaction, one can multiply every term by the point H on an elliptic curve, this yields
 
-$$ v_{i1} H = v_{o1} H + v_{o2} H$$
-- similar to the dlog problem, for people not knowing $v_{i1}, v_{o1}, v_{o2}$ it is almost impossible to obtain them now
+vi1 H = vo1 H + vo2 H
+- similar to the dlog problem, for people not knowing vi1, vo1, vo2 it is almost impossible to obtain them now
 - however, the inputs must still equal the outputs
 
 
@@ -163,7 +166,8 @@ assert_eq!(vi1*H,vo1*H+vo2*H);
 - the problem now is that, the people that transacted with you know the value of the transactions values and it gets easy for them to deduce your following transactions
 - thats why every input or output gets replaced by its corresponding pedersen commitment
 
-$$ rG + vH$$
+rG + vH
+
 - where $r$ is called blinding factor and $G$ is another point on the curve
 - in the context of mimblewimble $r$ can be thought of as a private key to the corresponding output and is only known by the owner of that output
 
