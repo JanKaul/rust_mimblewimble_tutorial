@@ -62,7 +62,7 @@ let mut rng = rand::thread_rng();
 
 - given the Generator _G = 3_ and the point _P = 2_ (publlic key) it is extremely difficult (assuming large numbers) to get the multiplicator _r_ (private key) that satisfies
 
-<center>_P = r*G_</center>
+<div align="center">_P = r*G_</div>
 
 - however, knowing _r_ it is easy to compute _P_
 
@@ -70,24 +70,24 @@ let mut rng = rand::thread_rng();
 
 - private key _r_, public key _U_ with
 
-<center>_U = r*G_</center>
+<div align="center">_U = r*G_</div>
  
 - signer generates random nonce _rt_ and computes commitment to nonce
 
-<center>_Ut = rt*G_</center>
+<div align="center">_Ut = rt*G_</div>
 
 - using challenge _c=H(m,Ut)_ (challenge has to be unique for message _m_ and nonce _rt_) signer computes
 
-<center>_rz = rt + c*r_</center>
+<div align="center">_rz = rt + c*r_</div>
 
 - signer sends _(Ut,rz)_ to verifier
 - verifier checks
 
-<center>_rz\*G = Ut + c\*U_</center>
+<div align="center">_rz\*G = Ut + c\*U_</div>
 
 - which can be expressed as
 
-<center>_rz\*G = rt\*G + c\*r\*G_</center>
+<div align="center">_rz\*G = rt\*G + c\*r\*G_<//div>
 
 
 ```Rust
@@ -126,7 +126,7 @@ assert_eq!(rz*G,Ut+c*U);
 
 
 
-    CompressedRistretto: [74, 248, 70, 116, 99, 183, 248, 239, 203, 127, 114, 180, 81, 221, 31, 95, 234, 43, 77, 56, 38, 200, 118, 110, 227, 105, 49, 227, 23, 151, 97, 92]
+    CompressedRistretto: [8, 158, 9, 191, 193, 55, 46, 52, 105, 36, 247, 76, 240, 44, 189, 9, 235, 155, 219, 109, 132, 235, 218, 85, 130, 122, 216, 34, 47, 223, 248, 50]
 
 
 
@@ -134,27 +134,27 @@ assert_eq!(rz*G,Ut+c*U);
 
 - two signers with private keys _r1,r2_ and public keys _U1,U2_ with
 
-<center>_U1 = r1\*G,&nbsp; &nbsp; U2 = r2\*G_</center>
+<div align="center">_U1 = r1\*G,&nbsp; &nbsp; U2 = r2\*G_</div>
  
 - signers generate random nonces _rt1,rt2_ and compute commitments to the nonces
 
-<center>_Ut1 = rt1\*G,&nbsp; &nbsp; Ut2 = rt2\*G_</center>
+<div align="center">_Ut1 = rt1\*G,&nbsp; &nbsp; Ut2 = rt2\*G_</div>
 
 - using challenge _c=H(m,Ut1+Ut2,U1+U2)_ (this is insecure!!!, see secure version [here](https://blockstream.com/2018/01/23/en-musig-key-aggregation-schnorr-signatures/)) signers compute
 
-<center>_rz1 = rt1 + c\*r1,&nbsp; &nbsp; rz2 = rt2 + c\*r2 _</center>
+<div align="center">_rz1 = rt1 + c\*r1,&nbsp; &nbsp; rz2 = rt2 + c\*r2 _</div>
 
 - signers send _(Ut1,rz1),(Ut2,rz2)_ to verifier
 - verifier checks
 
-<center>_rz\*G = Ut + c\*U_</center>
-<center>_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*(U1 + U2)_</center>
+<div align="center">_rz\*G = Ut + c\*U_</div>
+<div align="center">_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*(U1 + U2)_</div>
 
 - aggregate signatures allow to simply add puplic keys and signatures
 
-<center>_U = U1 + U2_</center>
+<div align="center">_U = U1 + U2_</div>
 
-<center>(Ut,rz) = (Ut1 + Ut2, rz1 + rz2)</center>
+<div align="center">_(Ut,rz) = (Ut1 + Ut2, rz1 + rz2)_</div>
 
 
 ```Rust
@@ -203,7 +203,7 @@ assert_eq!(rz*G,Ut+c*U);
 
 
 
-    CompressedRistretto: [130, 11, 96, 28, 130, 188, 247, 61, 151, 81, 79, 205, 26, 74, 203, 200, 102, 226, 255, 201, 108, 9, 181, 37, 71, 17, 114, 248, 148, 255, 163, 12]
+    CompressedRistretto: [20, 191, 153, 187, 99, 75, 9, 46, 236, 179, 225, 45, 246, 248, 146, 255, 119, 138, 46, 43, 221, 63, 135, 239, 95, 134, 112, 53, 88, 132, 63, 46]
 
 
 
@@ -218,7 +218,7 @@ assert_eq!(rz*G,Ut+c*U);
 - no transactions fees apply
 - in order to not generate money out of nothing, the inputs must equal the ouputs
 
-<center>_vi0 = vo0 + vo1_</center>
+<div align="center">_vi0 = vo0 + vo1_</div>
 
 
 ```Rust
@@ -255,7 +255,7 @@ vi0
 
 - in order to obscure the values of the transaction, one can multiply every term by the point _H_ on an elliptic curve, this yields
 
-<center>_vi0\*H = vo0\* H + vo1\*H_</center>
+<div align="center">_vi0\*H = vo0\* H + vo1\*H_</div>
 
 - similar to the dlog problem, for people not knowing _vi0, vo0, vo1_ it is almost impossible to obtain them now
 - however, the inputs must still equal the outputs
@@ -273,7 +273,7 @@ assert_eq!(vi0*H,vo0*H+vo1*H);
 
 
 
-    CompressedRistretto: [50, 88, 127, 50, 109, 67, 249, 30, 176, 133, 122, 236, 180, 49, 134, 117, 154, 66, 236, 129, 225, 132, 228, 230, 147, 111, 130, 241, 54, 128, 204, 55]
+    CompressedRistretto: [148, 138, 75, 242, 132, 118, 243, 252, 172, 167, 45, 58, 43, 109, 27, 219, 79, 196, 98, 124, 250, 28, 122, 169, 176, 46, 76, 113, 172, 125, 71, 121]
 
 
 
@@ -282,7 +282,7 @@ assert_eq!(vi0*H,vo0*H+vo1*H);
 - the problem now is that, the people that transacted with you know the value of the transactions values and it gets easy for them to deduce your following transactions (if they know you have 100, they can try every combination below 100 to see what you spend on your next output)
 - the aim is to replace every input and output by its corresponding pedersen commitment
 
-<center>_v\*H -> r\*G + v\*H_</center>
+<div align="center">_v\*H -> r\*G + v\*H_</div>
 
 - where _r_ is called blinding factor and _G_ is another point on the curve
 - every input and ouput has its own blinding factor
@@ -292,50 +292,50 @@ assert_eq!(vi0*H,vo0*H+vo1*H);
 
 - each participant uses the sum of his pedersen commitments for the outputs minus the sum of the pedersen commitments for the inputs as his public key
 
-<center>_U1 = (ro0\*G + vo0\*H) - (ri0\*G + vi0\*H)_</center>
+<div align="center">_U1 = (ro0\*G + vo0\*H) - (ri0\*G + vi0\*H)_</div>
 
-<center>_U2 = (ro1\*G + vo1*H)_</center>
+<div align="center">_U2 = (ro1\*G + vo1*H)_</div>
 
 - the private key for each participant is then the sum of the blinding factors of the outputs minus the inputs
 
-<center>_r1 = (ro0 - ri0)_</center>
+<div align="center">_r1 = (ro0 - ri0)_</div>
 
-<center>_r2 = ro1_</center>
+<div align="center">_r2 = ro1_</div>
 
 ## Validating transactions
 
-- public key for sender is sum of pedersen commitments
+- public key for sender is sum of pedersen commitments (output - input)
 
-<center>_U1 = (ro0 - ri0)\*G + (vo0 - vi0)\*H_</center>
+<div align="center">_U1 = (ro0 - ri0)\*G + (vo0 - vi0)\*H_</div>
 
-- public key of reciever is sum of pedersen commitments
+- public key of reciever is sum of pedersen commitments (output - input)
 
-<center>_U2 = ro1\*G + vo1\*H_</center>
+<div align="center">_U2 = ro1\*G + vo1\*H_</div>
 
 - both generate random nonces _rt1,rt2_ and compute commitments to the nonces
 
-<center>_Ut1 = rt1\*G,&nbsp; &nbsp; Ut2 = rt2\*G_</center>
+<div align="center">_Ut1 = rt1\*G,&nbsp; &nbsp; Ut2 = rt2\*G_</div>
 
 - using challenge _c=H(m,Ut1+Ut2,U1+U2)_ signers compute
 
-<center>_rz1 = rt1 + c\*(ro0 - ri0),&nbsp; &nbsp; rz2 = rt2 + c\*ro1 _</center>
+<div align="center">_rz1 = rt1 + c\*(ro0 - ri0),&nbsp; &nbsp; rz2 = rt2 + c\*ro1 _</div>
 
 - signers send _(Ut1,rz1),(Ut2,rz2)_ to verifier
 - verifier checks
 
-<center>_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*(U1 + U2)_</center>
+<div align="center">_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*(U1 + U2)_</div>
 
 - which is equal to 
 
-<center>_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*((ro0 - ri0)\*G + (vo0 - vi0)\*H + ro1\*G + vo1\*H)_</center>
+<div align="center">_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*((ro0 - ri0)\*G + (vo0 - vi0)\*H + ro1\*G + vo1\*H)_</div>
 
 - if the following condition holds
 
-<center>_0 = vo0\* H - vi0\*H + vo1\*H_</center>
+<div align="center">_0 = vo0\* H - vi0\*H + vo1\*H_</div>
 
-- this can be simplified to the valid aggregate signature
+- this can be simplified to the valid aggregate schnorr signature
 
-<center>_(rz1 + rz2)\*G = (Ut1 + Ut2) + c\*((ro0 - ri0)\*G + ro1\*G)_</center>
+<div align="center">_(rz1 + rz2)\*G = (rt1\*G + rt2\*G) + c\*((ro0 - ri0)\*G + ro1\*G)_</div>
 
 - vice versa, a valid signature means that the inputs and outputs cancel out
 
@@ -396,5 +396,5 @@ assert_eq!(rz*G,Ut+c*U);
 
 
 
-    CompressedRistretto: [100, 57, 107, 81, 46, 127, 181, 138, 238, 40, 112, 29, 243, 223, 13, 101, 51, 14, 241, 49, 170, 75, 171, 129, 109, 229, 244, 182, 252, 146, 64, 24]
+    CompressedRistretto: [80, 4, 253, 149, 37, 77, 34, 116, 159, 148, 142, 149, 228, 18, 226, 140, 193, 58, 114, 40, 56, 236, 154, 53, 229, 69, 85, 228, 63, 255, 154, 50]
 
