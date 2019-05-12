@@ -87,7 +87,7 @@ let mut rng = rand::thread_rng();
 
 - which can be expressed as
 
-<div align="center">_rz\*G = rt\*G + c\*r\*G_<//div>
+<div align="center">_rz\*G = rt\*G + c\*r\*G_</div>
 
 
 ```Rust
